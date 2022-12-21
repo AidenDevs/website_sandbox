@@ -1,8 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Blog from './Blog';
-import About from './About';
-import Home from './Home';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Blog from '../views/Blog';
+import About from '../views/About';
+import Homepage from '../views/Homepage';
 
 class SiteRouter extends React.Component {
     constructor(props) {
@@ -13,10 +13,9 @@ class SiteRouter extends React.Component {
         return (
             <Router>
                 <Routes >
-                    <Route exact path="/" element={<Blog />} />
-                    <Route exact path="/home" element={<Home />} />
+                    <Route exact path="/" element={<Homepage />} />
+                    <Route exact path="/home" element={<Homepage />} />
                     <Route exact path="/blog" element={<Blog />} />
-                    <Route exact path="/about" element={<About />} />
                 </Routes>
             </Router>
         );

@@ -1,6 +1,6 @@
 import './App.css';
 import Header from './components/Header';
-import SiteRouter from './components/SiteRouter'
+import SiteRouter from './util/SiteRouter'
 import { Container } from 'react-bootstrap';
 
 function App() {
