@@ -1,6 +1,7 @@
 import React from "react";
-import { Container, } from 'react-bootstrap';
+import { Button, Container, } from 'react-bootstrap';
 import Blogpost from '../components/Blogpost';
+
 
 function uniqueId() {
     const dateString = Date.now().toString(36);
@@ -8,7 +9,7 @@ function uniqueId() {
     return dateString + randomness;
 };
 
-function fetch_addPost(title, body_text, author) { 
+function fetch_addPost(title, body_text, author) {
     console.log(title, body_text, author);
     fetch("http://10.0.0.173:5000/blogposts/addpost", {
         method: "POST",
@@ -33,59 +34,67 @@ function fetch_addPost(title, body_text, author) {
                 alert(data.err)
             }
         });
+
+    //REMOVE
+    console.log("Test Post Added")
 }
 
+function testPrint() {
+    console.log("here")
+}
 
 class Blog extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
-            blogpost_data: "",
-            title: 'testing',
-            body_text: 'asda',
-            author: 'aidenthebard'
+            blogpost_data: [],
         };
     }
 
     componentDidMount() {
-        const { title, body_text, author } = this.state;
+        fetch("http://10.0.0.173:5000/blogposts/initposts", {
+            method: "POST",
+            crossDomain: true,
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                "Access-Control-Allow-Origin": "*",
+            },
+            body: JSON.stringify(
+                //HERE WE CAN ADD SOME STUFF
+            ),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                this.setState({ blogpost_data: data.data });
+                console.log(data);
+            });
 
-        fetch_addPost('testing', 'boidy asdasdawdawsdawa', 'aidenthebard');
-        // fetch("http://10.0.0.173:5000/blogposts/", {
-        //     method: "POST",
-        //     crossDomain: true,
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //         Accept: "application/json",
-        //         "Access-Control-Allow-Origin": "*",
-        //     }
-        // })
-        //     .then((res) => res.json())
-        //     .then((data) => {
-        //         if (data.status == "ok") {
-        //             console.log(data);
-        //         }
-        //         else if (data.status == "error") {
-        //             alert(data.err)
-        //         }
-        //     });
+        //REMOVE
+        console.log("Recieved Posts")
     }
 
-    initBlogposts = () => {
-        const elements = [];
-        const totalBlogposts = 10;
+    printData() {
+        // for(this.state.blogpost_data)
+        console.log(this.state.blogpost_data[0].body_text)
+    }
 
-        for (let i = 0; i < totalBlogposts; i++) {
+    drawBlogposts() {
+        const elements = [];
+
+        this.state.blogpost_data.forEach(element => {
             const blogID = uniqueId();
             elements.push(
                 <Blogpost
                     key={'bp_' + blogID}
-                    blogTitle="a"
-                    blogSubtext="b"
-                    blogText="c"
+                    blogTitle={element.title}
+                    blogSubtext={element.author}
+                    blogText={element.body_text}
                 ></Blogpost>
             )
-        }
+        });
+        console.log('here')
         return elements;
     }
 
@@ -94,14 +103,12 @@ class Blog extends React.Component {
             <Container className='my-4' style={{
 
             }}>
-                <div className="user-profile">
-                    {/* Group 1<h1>{this.state.test.group_2.fruit_1}</h1>
-                    Group 1<h1>{this.state.test.group_3.fruit_1}</h1> */}
+                <div className="blog-content">
+                    { this.drawBlogposts() }
                 </div>
-                {this.initBlogposts()}
             </Container>
         );
     }
 }
 
-export default Blog;
+export default Blog; 
