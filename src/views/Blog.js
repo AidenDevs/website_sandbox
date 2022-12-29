@@ -11,7 +11,7 @@ function uniqueId() {
 
 function fetch_addPost(title, body_text, author) {
     console.log(title, body_text, author);
-    fetch("http://sandbox-backend.vercel.app:5000/blogposts/addpost", {
+    fetch("https://sandbox-backend.vercel.app:5000/blogposts/addpost", {
         method: "POST",
         crossDomain: true,
         headers: {
@@ -53,7 +53,7 @@ class Blog extends React.Component {
     }
 
     componentDidMount() {
-        fetch("http://sandbox-backend.vercel.app:5000/blogposts/initposts", {
+        fetch("https://sandbox-backend.vercel.app:5000/blogposts/initposts", {
             method: "POST",
             crossDomain: true,
             headers: {
