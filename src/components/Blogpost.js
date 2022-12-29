@@ -1,15 +1,21 @@
 import React from "react";
 import { Container, Row, Card } from 'react-bootstrap';
 
+function uniqueId() {
+    const dateString = Date.now().toString(36);
+    const randomness = Math.random().toString(36).substr(2);
+    return dateString + randomness;
+  };
+
 class Blogpost extends React.Component {
     constructor(props) {
         super(props)
     }
-
-    createPost = () => {
-        const blogID = 0;
+    
+    createPost = (props) => {
+        const blogID = uniqueId();
         const elements = [];
-
+        
         elements.push(
             <Card key={'bp_' + blogID}
                 style={{
@@ -24,13 +30,18 @@ class Blogpost extends React.Component {
                 <Card.Title className="" style={{
                         fontSize: '1em',
                         color: 'rgb(78, 78, 78)'
-                    }}>Card Title</Card.Title>
+                    }}>{this.props.blogTitle}</Card.Title>
                 <Card.Text className="pb-4" style={{
                         fontSize: '.75em',
                         color: 'rgb(78, 78, 78)'
                     }}>
-                    Some quick example text to build on the card title and make up the
-                    bulk of the card's content.
+                    {this.props.blogText}
+                </Card.Text>
+                <Card.Text className="pb-4" style={{
+                        fontSize: '.75em',
+                        color: 'rgb(78, 78, 78)'
+                    }}>
+                    {this.props.blogSubtext}
                 </Card.Text>
             </Card>
         )

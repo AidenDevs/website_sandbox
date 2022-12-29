@@ -1,10 +1,12 @@
 .App {
   background-image: url('./y-so-serious.png');
+  background-color: linear-gradient(135deg, rgb(38, 139, 255), rgb(98, 0, 255));
   background-repeat: repeat;
   min-height: 100vh;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding-bottom: 1rem;
 }
 
 body {
@@ -17,13 +19,9 @@ body::-webkit-scrollbar {
   display: none; /* for Chrome, Safari, and Opera */
 }
 
-.content-wrapper {
-  border: solid;
-  border-radius: 10px;
-  border-width: 2px;
-  border-color: black;
-}
-
-html {
-  height: 100%;
+#post-base {
+  background-color: rgba(255, 255, 255, .8);
+  backdrop-filter: blur(5px);
+  margin: 1rem;
+  z-index: 1;
 }
