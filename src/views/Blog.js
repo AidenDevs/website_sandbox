@@ -11,7 +11,7 @@ function uniqueId() {
 
 function fetch_addPost(title, body_text, author) {
     console.log(title, body_text, author);
-    fetch("http://54.146.196.213:5000/blogposts/addpost", {
+    fetch("https://54.146.196.213:5000/blogposts/addpost", {
         method: "POST",
         crossDomain: true,
         headers: {
@@ -53,7 +53,7 @@ class Blog extends React.Component {
     }
 
     componentDidMount() {
-        fetch("http://54.146.196.213:5000/blogposts/initposts", {
+        fetch("https://54.146.196.213:5000/blogposts/initposts", {
             method: "POST",
             crossDomain: true,
             headers: {
