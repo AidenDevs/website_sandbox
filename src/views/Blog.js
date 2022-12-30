@@ -11,7 +11,7 @@ function uniqueId() {
 
 function fetch_addPost(title, body_text, author) {
     console.log(title, body_text, author);
-    fetch("https://b3gf03m8w4.execute-api.us-east-1.amazonaws.com/allposts", {
+    fetch("http://sandboxapi-env.eba-2pk7938m.us-east-1.elasticbeanstalk.com/blogposts/initposts", {
         method: "POST",
         crossDomain: true,
         headers: {
@@ -53,7 +53,7 @@ class Blog extends React.Component {
     }
 
     componentDidMount() {
-        fetch("https://b3gf03m8w4.execute-api.us-east-1.amazonaws.com/allposts", {
+        fetch("http://sandboxapi-env.eba-2pk7938m.us-east-1.elasticbeanstalk.com/blogposts/initposts", {
             method: "POST",
             crossDomain: true,
             headers: {
